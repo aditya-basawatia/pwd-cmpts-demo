@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Building2 } from 'lucide-react';
 import { getState, setSession, addAuditLog } from '@/store/store';
+import { Emblem, SatyamevaJayate, Tricolor } from '@/components/Indic';
 
 export default function LoginPage() {
   const { t } = useTranslation();
@@ -24,12 +24,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pwd-navy to-slate-800 px-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gov-green px-4">
+      <Tricolor className="absolute inset-x-0 top-0" />
       <div className="w-full max-w-md">
         <div className="text-center text-white mb-8">
-          <Building2 className="mx-auto h-12 w-12 text-pwd-gold mb-3" />
+          <Emblem className="mx-auto h-16 w-16 mb-3" />
           <h1 className="text-2xl font-bold">{t('internalPortal')}</h1>
-          <p className="text-white/60 text-sm mt-1">PWD CMPTS - Chhattisgarh</p>
+          <p className="text-white/70 text-sm mt-1">{t('govt')} · {t('dept')}</p>
+          <SatyamevaJayate className="text-pwd-gold text-xs mt-2 inline-block" />
         </div>
         <form onSubmit={handleLogin} className="card space-y-4">
           {error && <p className="text-red-600 text-sm">{error}</p>}

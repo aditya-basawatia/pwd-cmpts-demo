@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-pwd-greenLight/40 text-slate-900 antialiased;
   font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;
 }
 
@@ -11,9 +11,14 @@ html[lang='hi'] body {
   font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
 }
 
+/* Devanagari renders a touch larger for legibility */
+html[lang='hi'] {
+  font-feature-settings: 'kern' 1;
+}
+
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-pwd-navy px-4 py-2 text-sm font-medium text-white hover:bg-pwd-navy/90 transition;
+    @apply inline-flex items-center justify-center rounded-lg bg-pwd-green px-4 py-2 text-sm font-medium text-white hover:bg-pwd-greenDark transition;
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition;
@@ -22,7 +27,7 @@ html[lang='hi'] body {
     @apply rounded-xl border border-slate-200 bg-white p-5 shadow-sm;
   }
   .input {
-    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-pwd-navy focus:outline-none focus:ring-2 focus:ring-pwd-navy/20;
+    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-pwd-green focus:outline-none focus:ring-2 focus:ring-pwd-green/20;
   }
   .label {
     @apply mb-1 block text-sm font-medium text-slate-700;

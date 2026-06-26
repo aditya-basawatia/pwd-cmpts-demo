@@ -96,8 +96,8 @@ export default function LodgeComplaintPage() {
     return (
       <div className="mx-auto max-w-lg px-4 py-16 text-center">
         <CheckCircle className="mx-auto h-16 w-16 text-pwd-green mb-4" />
-        <h1 className="text-2xl font-bold text-pwd-navy mb-2">Complaint Registered!</h1>
-        <p className="text-slate-600 mb-4">Your Ticket ID:</p>
+        <h1 className="text-2xl font-bold text-pwd-green mb-2">{t('complaintRegistered')}</h1>
+        <p className="text-slate-600 mb-4">{t('yourTicketId')}:</p>
         <p className="text-3xl font-mono font-bold text-pwd-gold mb-6">{ticketId}</p>
         <Link to={`/track?ticket=${ticketId}&mobile=${form.mobile}`} className="btn-primary">
           {t('trackComplaint')}
@@ -108,14 +108,14 @@ export default function LodgeComplaintPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-pwd-navy mb-6">{t('lodgeNew')}</h1>
+      <h1 className="text-2xl font-bold text-pwd-green mb-6">{t('lodgeNew')}</h1>
 
       {step === 'form' && (
         <div className="card space-y-4">
           <div>
             <label className="label">{t('selectProject')}</label>
             <select className="input" value={form.projectId} onChange={(e) => setForm({ ...form, projectId: e.target.value })}>
-              <option value="">-- Select --</option>
+              <option value="">{t('selectPlaceholder')}</option>
               {projects.map((p) => (
                 <option key={p.id} value={p.id}>{isHi ? p.nameHi : p.name}</option>
               ))}
@@ -132,7 +132,7 @@ export default function LodgeComplaintPage() {
           <div>
             <label className="label">{t('category')}</label>
             <select className="input" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })}>
-              <option value="">-- Select --</option>
+              <option value="">{t('selectPlaceholder')}</option>
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>{isHi ? c.nameHi : c.name}</option>
               ))}

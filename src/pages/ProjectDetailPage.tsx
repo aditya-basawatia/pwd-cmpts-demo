@@ -16,7 +16,7 @@ export default function ProjectDetailPage() {
     .filter((u) => u.projectId === id)
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-  if (!project) return <div className="p-8 text-center">Project not found</div>;
+  if (!project) return <div className="p-8 text-center">{t('projectNotFound')}</div>;
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
@@ -59,7 +59,7 @@ export default function ProjectDetailPage() {
       <div className="card">
         <h2 className="text-lg font-semibold text-pwd-navy mb-4">{t('statusUpdates')}</h2>
         {updates.length === 0 ? (
-          <p className="text-slate-500 text-sm">No updates yet.</p>
+          <p className="text-slate-500 text-sm">{t('noUpdatesYet')}</p>
         ) : (
           <div className="space-y-4">
             {updates.map((u) => (

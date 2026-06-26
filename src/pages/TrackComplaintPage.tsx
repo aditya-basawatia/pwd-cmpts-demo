@@ -72,7 +72,7 @@ export default function TrackComplaintPage() {
           <button className="btn-primary w-full" onClick={handleVerify}>{t('track')}</button>
         </div>
       ) : !complaint ? (
-        <p className="text-center text-red-600 py-8">Complaint not found for this Ticket ID and mobile number.</p>
+        <p className="text-center text-red-600 py-8">{t('complaintNotFound')}</p>
       ) : (
         <div className="space-y-6">
           <div className="card">
@@ -80,11 +80,11 @@ export default function TrackComplaintPage() {
               <h2 className="font-mono text-xl font-bold text-pwd-navy">{complaint.ticketId}</h2>
               <StatusBadge status={complaint.status} />
             </div>
-            <p className="text-sm text-slate-500 mb-2">Project: {isHi ? project?.nameHi : project?.name}</p>
+            <p className="text-sm text-slate-500 mb-2">{t('project')}: {isHi ? project?.nameHi : project?.name}</p>
             <p className="text-sm">{complaint.description}</p>
             {complaint.publicRemarks.length > 0 && (
               <div className="mt-4 border-t pt-4">
-                <p className="text-sm font-medium mb-2">Official Responses:</p>
+                <p className="text-sm font-medium mb-2">{t('officialResponses')}:</p>
                 {complaint.publicRemarks.map((r, i) => (
                   <p key={i} className="text-sm text-slate-600 bg-green-50 rounded p-2 mb-1">{r}</p>
                 ))}
@@ -93,7 +93,7 @@ export default function TrackComplaintPage() {
           </div>
 
           <div className="card">
-            <h3 className="font-semibold mb-4">Status Timeline</h3>
+            <h3 className="font-semibold mb-4">{t('statusTimeline')}</h3>
             <div className="space-y-3">
               {events.map((e) => (
                 <div key={e.id} className="flex gap-3 items-start">
@@ -114,10 +114,10 @@ export default function TrackComplaintPage() {
               <div>
                 <label className="label">{t('rating')}</label>
                 <select className="input" value={feedback.rating} onChange={(e) => setFeedback({ ...feedback, rating: +e.target.value })}>
-                  {[5, 4, 3, 2, 1].map((r) => <option key={r} value={r}>{r} stars</option>)}
+                  {[5, 4, 3, 2, 1].map((r) => <option key={r} value={r}>{r} {t('stars')}</option>)}
                 </select>
               </div>
-              <textarea className="input" placeholder="Your comments..." value={feedback.comment} onChange={(e) => setFeedback({ ...feedback, comment: e.target.value })} />
+              <textarea className="input" placeholder={t('yourComments')} value={feedback.comment} onChange={(e) => setFeedback({ ...feedback, comment: e.target.value })} />
               <button className="btn-primary" onClick={handleFeedback}>{t('submitFeedback')}</button>
             </div>
           )}

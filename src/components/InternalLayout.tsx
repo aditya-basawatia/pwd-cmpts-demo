@@ -1,11 +1,12 @@
 import { Link, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  Building2, LayoutDashboard, MessageSquareWarning, FolderKanban,
+  LayoutDashboard, MessageSquareWarning, FolderKanban,
   FileText, Users, BarChart3, Plug, ScrollText, LogOut, RotateCcw,
 } from 'lucide-react';
 import { getSession, resetDemo, setSession } from '@/store/store';
 import { roleLabels } from '@/lib/rbac';
+import { AshokaChakra, Tricolor } from './Indic';
 
 export default function InternalLayout() {
   const { t } = useTranslation();
@@ -27,9 +28,10 @@ export default function InternalLayout() {
 
   return (
     <div className="flex min-h-screen bg-slate-100">
-      <aside className="hidden w-64 flex-col bg-pwd-navy text-white lg:flex">
+      <aside className="hidden w-64 flex-col bg-gov-green text-white lg:flex">
+        <Tricolor />
         <div className="flex items-center gap-2 border-b border-white/10 p-4">
-          <Building2 className="h-8 w-8 text-pwd-gold" />
+          <AshokaChakra className="h-8 w-8" color="#caa53d" />
           <div>
             <div className="font-bold text-sm">{t('internalPortal')}</div>
             <div className="text-xs text-white/60">CMPTS</div>

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowRight, Search, MessageSquarePlus, MapPin } from 'lucide-react';
 import { useStore } from '@/hooks/useStore';
 import { ProgressBar } from '@/components/Badges';
+import { AshokaChakra } from '@/components/Indic';
 
 export default function HomePage() {
   const { t, i18n } = useTranslation();
@@ -13,14 +14,18 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="bg-gradient-to-br from-pwd-navy via-pwd-navy to-slate-800 text-white">
-        <div className="mx-auto max-w-7xl px-4 py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gov-green text-white">
+        <AshokaChakra
+          className="pointer-events-none absolute -right-16 top-1/2 hidden h-96 w-96 -translate-y-1/2 opacity-10 md:block"
+          color="#ffffff"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="max-w-2xl">
             <p className="text-pwd-gold text-sm font-medium mb-2">{t('govt')} · {t('dept')}</p>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-4">{t('heroTitle')}</h1>
             <p className="text-lg text-white/80 mb-8">{t('heroSubtitle')}</p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/projects" className="btn-primary !bg-pwd-gold !text-pwd-navy font-semibold">
+              <Link to="/projects" className="btn-primary !bg-pwd-gold !text-pwd-ink font-semibold hover:!bg-pwd-gold/90">
                 {t('browseProjects')} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link to="/lodge" className="btn-secondary">
@@ -34,11 +39,12 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 -mt-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { label: t('statsProjects'), value: active, color: 'text-pwd-navy' },
-            { label: t('statsComplaints'), value: resolved, color: 'text-pwd-green' },
-            { label: t('statsDivisions'), value: divisions.length, color: 'text-pwd-gold' },
+            { label: t('statsProjects'), value: active, color: 'text-pwd-saffron', bar: 'bg-pwd-saffron' },
+            { label: t('statsComplaints'), value: resolved, color: 'text-pwd-green', bar: 'bg-pwd-green' },
+            { label: t('statsDivisions'), value: divisions.length, color: 'text-pwd-chakra', bar: 'bg-pwd-chakra' },
           ].map((s) => (
-            <div key={s.label} className="card text-center">
+            <div key={s.label} className="card text-center relative overflow-hidden">
+              <div className={`absolute inset-x-0 top-0 h-1 ${s.bar}`} />
               <div className={`text-3xl font-bold ${s.color}`}>{s.value}</div>
               <div className="text-sm text-slate-500 mt-1">{s.label}</div>
             </div>
@@ -68,9 +74,9 @@ export default function HomePage() {
       <section className="bg-white border-t py-12">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-pwd-navy">{t('projects')}</h2>
-            <Link to="/projects" className="text-pwd-navy text-sm font-medium hover:underline">
-              View all →
+            <h2 className="text-2xl font-bold text-pwd-green">{t('projects')}</h2>
+            <Link to="/projects" className="text-pwd-green text-sm font-medium hover:underline">
+              {t('viewAll')} →
             </Link>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
