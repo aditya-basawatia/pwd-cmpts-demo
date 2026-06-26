@@ -12,6 +12,8 @@ npm run dev
 
 Open http://localhost:5173
 
+**Live demo:** https://aditya-basawatia.github.io/pwd-cmpts-demo/
+
 ## Build for Deployment
 
 ```bash
@@ -21,8 +23,10 @@ npm run build
 Output is in `dist/` — upload to **any static host** (Netlify, Vercel, GitHub Pages, S3, Nginx).
 
 ```bash
-npm run preview   # test production build locally
+npm run deploy   # rebuilds and publishes to GitHub Pages
 ```
+
+**Live URL:** https://aditya-basawatia.github.io/pwd-cmpts-demo/
 
 ## Demo Credentials
 
