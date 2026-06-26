@@ -92,6 +92,23 @@ const now = new Date();
 const daysAgo = (n: number) => new Date(now.getTime() - n * 86400000).toISOString();
 const daysFromNow = (n: number) => new Date(now.getTime() + n * 86400000).toISOString();
 
+// Lightweight inline "site photo" placeholder for seeded field captures, so the
+// demo shows geo-tagged progress images without shipping large binary assets.
+const sitePhoto = (label: string) =>
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='320' height='240'>` +
+      `<rect width='320' height='240' fill='#cfe3d6'/>` +
+      `<rect y='168' width='320' height='72' fill='#a9b08f'/>` +
+      `<rect x='38' y='86' width='72' height='92' fill='#9a8366'/>` +
+      `<rect x='150' y='56' width='92' height='122' fill='#c2b280'/>` +
+      `<rect x='190' y='30' width='6' height='150' fill='#8a8a8a'/>` +
+      `<circle cx='276' cy='46' r='22' fill='#ffd35a'/>` +
+      `<rect x='0' y='204' width='320' height='36' fill='rgba(0,0,0,0.55)'/>` +
+      `<text x='8' y='227' fill='#ffffff' font-family='sans-serif' font-size='12'>${label}</text>` +
+      `</svg>`,
+  );
+
 export const seedState: AppState = {
   divisions,
   orgUnits,
@@ -151,7 +168,7 @@ export const seedState: AppState = {
       lat: 21.1965,
       lng: 81.969,
       status: 'in_progress',
-      completionPercent: 28,
+      completionPercent: 32,
       contractor: 'Bridge Corp India',
       workOrderRef: 'WO/CG/2025/1156',
       sanctionedValue: 156000000,
@@ -205,8 +222,11 @@ export const seedState: AppState = {
       nameHi: 'राजनांदगांव सामुदायिक भवन',
       type: 'building',
       divisionId: 'div-rajnandgaon',
+      orgUnitId: 'org-sub-durg2',
       location: 'Rajnandgaon Town',
       locationHi: 'राजनांदगांव शहर',
+      lat: 21.0972,
+      lng: 81.0306,
       status: 'completed',
       completionPercent: 100,
       contractor: 'Town Builders',
@@ -222,8 +242,11 @@ export const seedState: AppState = {
       nameHi: 'कोरबा औद्योगिक क्षेत्र सड़क नेटवर्क',
       type: 'road',
       divisionId: 'div-korba',
+      orgUnitId: 'org-sub-bilaspur1',
       location: 'Korba Industrial Area',
       locationHi: 'कोरबा औद्योगिक क्षेत्र',
+      lat: 22.3595,
+      lng: 82.7501,
       status: 'in_progress',
       completionPercent: 55,
       contractor: 'Industrial Roads Pvt Ltd',
@@ -279,8 +302,11 @@ export const seedState: AppState = {
       nameHi: 'धमतरी ग्रामीण सड़क पैकेज',
       type: 'road',
       divisionId: 'div-dhamtari',
+      orgUnitId: 'org-sub-raipur3',
       location: 'Dhamtari District',
       locationHi: 'धमतरी जिला',
+      lat: 20.7073,
+      lng: 81.5497,
       status: 'in_progress',
       completionPercent: 48,
       contractor: 'Rural Roads CG',
@@ -292,6 +318,40 @@ export const seedState: AppState = {
     },
   ],
   statusUpdates: [
+    {
+      id: 'su-007',
+      projectId: 'proj-003',
+      message: 'On-site inspection — Pier P2 casting completed',
+      messageHi: 'साइट निरीक्षण — पियर P2 ढलाई पूर्ण',
+      completionPercent: 32,
+      milestoneLabel: 'Pier P2',
+      createdAt: daysAgo(1),
+      createdBy: 'h-sdo-arang',
+      createdByName: 'Mohit Kumar Sahu',
+      photoDataUrl: sitePhoto('Mahanadi Bridge, Rajim - ON-SITE'),
+      lat: 21.1965,
+      lng: 81.969,
+      accuracyM: 9,
+      distanceM: 24,
+      onSite: true,
+    },
+    {
+      id: 'su-008',
+      projectId: 'proj-002',
+      message: 'Surfacing progress captured at Km 62',
+      messageHi: 'किमी 62 पर सतह कार्य की प्रगति दर्ज',
+      completionPercent: 62,
+      milestoneLabel: 'Surfacing Km 60-65',
+      createdAt: daysAgo(2),
+      createdBy: 'h-sdo-raipur1',
+      createdByName: 'Ashish Ngpure',
+      photoDataUrl: sitePhoto('NH-30 Widening, Km 62 - ON-SITE'),
+      lat: 21.45,
+      lng: 81.85,
+      accuracyM: 12,
+      distanceM: 40,
+      onSite: true,
+    },
     {
       id: 'su-001',
       projectId: 'proj-001',

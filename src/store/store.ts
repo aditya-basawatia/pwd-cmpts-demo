@@ -4,6 +4,11 @@ import { seedState } from '@/data/seed';
 const STORAGE_KEY = 'cmpts-demo-state';
 const SESSION_KEY = 'cmpts-session';
 const OTP_KEY = 'cmpts-otp';
+const VERSION_KEY = 'cmpts-seed-version';
+
+// Bump this whenever the seed shape/accounts change so existing browsers get a
+// clean reset (otherwise a stale persisted `staff` list hides new demo logins).
+const SEED_VERSION = '2026-06-26-hierarchy-3';
 
 type Listener = () => void;
 const listeners = new Set<Listener>();
@@ -12,22 +17,47 @@ let state: AppState = loadState();
 
 function loadState(): AppState {
   try {
+    const storedVersion = localStorage.getItem(VERSION_KEY);
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
+    if (raw && storedVersion === SEED_VERSION) {
       const parsed = JSON.parse(raw) as Partial<AppState>;
-      // Forward-compatible merge: older persisted state may predate the
-      // hierarchy (orgUnits) feature, so backfill any missing collections.
+      // Same-version merge keeps user-created complaints/updates while
+      // backfilling any collections added since this browser last saved.
       return { ...structuredClone(seedState), ...parsed } as AppState;
     }
   } catch {
     /* ignore */
   }
-  return structuredClone(seedState);
+  // Fresh seed (first run, or seed version changed): persist so every tab and
+  // the demo accounts are immediately consistent.
+  const fresh = structuredClone(seedState);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh));
+    localStorage.setItem(VERSION_KEY, SEED_VERSION);
+  } catch {
+    /* ignore */
+  }
+  return fresh;
 }
 
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(VERSION_KEY, SEED_VERSION);
   listeners.forEach((l) => l());
+}
+
+// Keep all open tabs (e.g. the desktop portal and the field app) in sync. The
+// `storage` event only fires in *other* tabs, so the originating tab still
+// relies on the in-memory listeners above.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e) => {
+    if (e.key === STORAGE_KEY || e.key === VERSION_KEY) {
+      state = loadState();
+      listeners.forEach((l) => l());
+    } else if (e.key === SESSION_KEY) {
+      listeners.forEach((l) => l());
+    }
+  });
 }
 
 export function subscribe(listener: Listener) {
@@ -51,7 +81,9 @@ export function updateState(updater: (s: AppState) => AppState) {
 
 export function getSession(): SessionUser | null {
   try {
-    const raw = sessionStorage.getItem(SESSION_KEY);
+    // Stored in localStorage (not sessionStorage) so a single login is shared
+    // across the desktop portal and the field app, even in separate tabs.
+    const raw = localStorage.getItem(SESSION_KEY);
     return raw ? (JSON.parse(raw) as SessionUser) : null;
   } catch {
     return null;
@@ -59,8 +91,8 @@ export function getSession(): SessionUser | null {
 }
 
 export function setSession(user: SessionUser | null) {
-  if (user) sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
-  else sessionStorage.removeItem(SESSION_KEY);
+  if (user) localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+  else localStorage.removeItem(SESSION_KEY);
   listeners.forEach((l) => l());
 }
 
