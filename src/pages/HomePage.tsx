@@ -52,20 +52,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <h2 className="text-2xl font-bold text-pwd-navy mb-6">{t('howItWorks')}</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+      <section className="mx-auto max-w-7xl px-4 py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-pwd-green">{t('howItWorks')}</h2>
+          <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-pwd-gold" />
+        </div>
+        <div className="relative grid gap-8 md:grid-cols-3">
+          {/* connector line on desktop */}
+          <div className="pointer-events-none absolute left-0 right-0 top-7 hidden border-t-2 border-dashed border-pwd-greenLight md:block" />
           {[
-            { step: '1', title: t('step1'), icon: Search },
-            { step: '2', title: t('step2'), icon: MessageSquarePlus },
-            { step: '3', title: t('step3'), icon: MapPin },
+            { step: '1', title: t('step1'), desc: t('step1Desc'), icon: Search },
+            { step: '2', title: t('step2'), desc: t('step2Desc'), icon: MessageSquarePlus },
+            { step: '3', title: t('step3'), desc: t('step3Desc'), icon: MapPin },
           ].map((item) => (
-            <div key={item.step} className="card">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pwd-navy text-white font-bold mb-3">
-                {item.step}
+            <div key={item.step} className="relative flex flex-col items-center text-center">
+              <div className="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-pwd-green text-white shadow-md">
+                <item.icon className="h-7 w-7" />
+                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-pwd-gold text-xs font-bold text-pwd-ink ring-2 ring-white">
+                  {item.step}
+                </span>
               </div>
-              <item.icon className="h-6 w-6 text-pwd-gold mb-2" />
-              <p className="font-medium">{item.title}</p>
+              <p className="text-lg font-semibold text-pwd-ink">{item.title}</p>
+              <p className="mt-2 max-w-xs text-sm text-slate-500">{item.desc}</p>
             </div>
           ))}
         </div>

@@ -54,8 +54,7 @@ export default function Layout() {
           <Link to="/" className="flex items-center gap-3">
             <Emblem className="h-12 w-12 shrink-0" />
             <div className="leading-tight">
-              <div className="text-[11px] font-medium text-slate-500">{t('govtOfIndia')}</div>
-              <div className="text-sm md:text-base font-bold text-pwd-green">{t('govt')}</div>
+              <div className="text-base md:text-lg font-bold text-pwd-green">{t('govt')}</div>
               <div className="text-[11px] text-slate-500">{t('dept')}</div>
             </div>
           </Link>
