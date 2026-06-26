@@ -32,11 +32,12 @@ export function AshokaChakra({ className = 'h-6 w-6', color = '#0a3a82' }: { cla
 
 export function Emblem({ className = 'h-12 w-12' }: { className?: string }) {
   return (
-    <div className={`flex flex-col items-center justify-center ${className}`}>
-      <div className="flex h-full w-full items-center justify-center rounded-full bg-white/95 ring-2 ring-pwd-gold shadow-sm">
-        <AshokaChakra className="h-3/4 w-3/4" />
-      </div>
-    </div>
+    <img
+      src={`${import.meta.env.BASE_URL}cg-emblem.svg`}
+      alt="Emblem of Chhattisgarh"
+      className={`object-contain ${className}`}
+      loading="eager"
+    />
   );
 }
 
