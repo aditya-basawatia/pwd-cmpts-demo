@@ -75,9 +75,20 @@ export default function AppProfilePage() {
         <span className="flex-1 text-sm font-medium text-pwd-ink">{t('openDesktopPortal')}</span>
       </button>
 
-      <button onClick={() => resetDemo()} className="card flex w-full items-center gap-3 text-left">
+      <button
+        onClick={() => {
+          if (window.confirm(t('resetConfirm'))) {
+            resetDemo();
+            window.alert(t('resetDone'));
+          }
+        }}
+        className="card flex w-full items-center gap-3 text-left"
+      >
         <RotateCcw className="h-5 w-5 text-slate-500" />
-        <span className="flex-1 text-sm font-medium text-pwd-ink">{t('resetDemo')}</span>
+        <span className="flex-1">
+          <span className="block text-sm font-medium text-pwd-ink">{t('resetDemo')}</span>
+          <span className="block text-xs text-slate-500">{t('resetDemoHint')}</span>
+        </span>
       </button>
 
       <button

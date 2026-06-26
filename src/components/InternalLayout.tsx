@@ -64,7 +64,12 @@ export default function InternalLayout() {
             {roleLabels[session.role].en}
           </div>
           <button
-            onClick={() => { resetDemo(); }}
+            onClick={() => {
+              if (window.confirm(t('resetConfirm'))) {
+                resetDemo();
+                window.alert(t('resetDone'));
+              }
+            }}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-white/80 hover:bg-white/10"
           >
             <RotateCcw className="h-4 w-4" /> {t('resetDemo')}
