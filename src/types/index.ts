@@ -17,6 +17,20 @@ export type StaffRole =
   | 'complaint_handler'
   | 'viewer';
 
+// PWD administrative hierarchy levels, top (state) to bottom (sub-division).
+export type OrgLevel = 'state' | 'zone' | 'circle' | 'division' | 'subdivision';
+
+export interface OrgUnit {
+  id: string;
+  name: string;
+  nameHi: string;
+  level: OrgLevel;
+  parentId: string | null;
+  /** Geographic centre used by the field app (lat,lng) where relevant. */
+  lat?: number;
+  lng?: number;
+}
+
 export interface Division {
   id: string;
   name: string;
@@ -32,6 +46,14 @@ export interface StatusUpdate {
   milestoneLabel?: string;
   createdAt: string;
   createdBy?: string;
+  createdByName?: string;
+  /** Field-capture metadata (geo-tagged on-site progress photos). */
+  photoDataUrl?: string;
+  lat?: number;
+  lng?: number;
+  accuracyM?: number;
+  distanceM?: number;
+  onSite?: boolean;
 }
 
 export interface Project {
@@ -40,8 +62,13 @@ export interface Project {
   nameHi: string;
   type: ProjectType;
   divisionId: string;
+  /** Org unit (sub-division/division) that owns this project for hierarchy scoping. */
+  orgUnitId?: string;
   location: string;
   locationHi: string;
+  /** Work site coordinates used for on-site geo-verification in the field app. */
+  lat?: number;
+  lng?: number;
   status: ProjectStatus;
   completionPercent: number;
   contractor?: string;
@@ -100,6 +127,10 @@ export interface StaffUser {
   designation: string;
   role: StaffRole;
   divisionIds: string[];
+  /** The org unit this officer heads; drives hierarchy visibility scoping. */
+  orgUnitId?: string;
+  /** Demo accounts that bypass the on-site GPS check during field capture. */
+  demoOverride?: boolean;
   password: string;
   active: boolean;
 }
@@ -132,6 +163,7 @@ export interface ComplaintCategory {
 
 export interface AppState {
   divisions: Division[];
+  orgUnits: OrgUnit[];
   projects: Project[];
   statusUpdates: StatusUpdate[];
   complaints: Complaint[];
@@ -147,4 +179,7 @@ export interface SessionUser {
   name: string;
   role: StaffRole;
   divisionIds: string[];
+  orgUnitId?: string;
+  designation?: string;
+  demoOverride?: boolean;
 }

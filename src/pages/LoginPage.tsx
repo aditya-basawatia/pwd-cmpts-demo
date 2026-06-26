@@ -18,7 +18,15 @@ export default function LoginPage() {
       setError('Invalid credentials');
       return;
     }
-    setSession({ id: user.id, name: user.name, role: user.role, divisionIds: user.divisionIds });
+    setSession({
+      id: user.id,
+      name: user.name,
+      role: user.role,
+      divisionIds: user.divisionIds,
+      orgUnitId: user.orgUnitId,
+      designation: user.designation,
+      demoOverride: user.demoOverride,
+    });
     addAuditLog('LOGIN', 'user', user.id, user.id, user.name);
     navigate('/internal');
   };
@@ -44,8 +52,13 @@ export default function LoginPage() {
             <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <button type="submit" className="btn-primary w-full">{t('login')}</button>
+          <button type="button" onClick={() => navigate('/app/login')} className="btn-secondary w-full">
+            {t('openApp')}
+          </button>
           <div className="text-xs text-slate-400 border-t pt-3 space-y-1">
             <p>Demo accounts:</p>
+            <p>Demo (all access): demo@pwd.cg.gov.in / demo123</p>
+            <p>Engineer-in-Chief: einc@pwd.cg.gov.in / einc123</p>
             <p>Super Admin: rajesh.verma@pwd.cg.gov.in / admin123</p>
             <p>Division Officer: amit.sharma@pwd.cg.gov.in / ee123</p>
             <p>Handler: vikram.singh@pwd.cg.gov.in / handler123</p>

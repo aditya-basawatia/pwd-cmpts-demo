@@ -16,6 +16,11 @@ html[lang='hi'] {
   font-feature-settings: 'kern' 1;
 }
 
+@keyframes loadbar {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(260%); }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center rounded-lg bg-pwd-green px-4 py-2 text-sm font-medium text-white hover:bg-pwd-greenDark transition;

@@ -2,7 +2,7 @@ import { Link, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   LayoutDashboard, MessageSquareWarning, FolderKanban,
-  FileText, Users, BarChart3, Plug, ScrollText, LogOut, RotateCcw,
+  FileText, Users, BarChart3, Plug, ScrollText, LogOut, RotateCcw, Smartphone,
 } from 'lucide-react';
 import { getSession, resetDemo, setSession } from '@/store/store';
 import { roleLabels } from '@/lib/rbac';
@@ -53,6 +53,12 @@ export default function InternalLayout() {
           })}
         </nav>
         <div className="border-t border-white/10 p-3 space-y-2">
+          <Link
+            to="/app"
+            className="flex w-full items-center gap-2 rounded-lg bg-pwd-gold/90 px-3 py-2 text-sm font-semibold text-pwd-ink hover:bg-pwd-gold"
+          >
+            <Smartphone className="h-4 w-4" /> {t('openApp')}
+          </Link>
           <div className="px-3 text-xs text-white/60">
             {session.name}<br />
             {roleLabels[session.role].en}

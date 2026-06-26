@@ -1,4 +1,7 @@
 import type { AppState, ComplaintCategory, Division, StaffUser } from '@/types';
+import { orgUnits, hierarchyStaff } from './org';
+
+export { orgUnits } from './org';
 
 export const divisions: Division[] = [
   { id: 'div-raipur', name: 'Raipur', nameHi: 'रायपुर' },
@@ -21,6 +24,8 @@ export const categories: ComplaintCategory[] = [
 ];
 
 export const staffUsers: StaffUser[] = [
+  // Real PWD hierarchy officers first so they are shown as unit heads.
+  ...hierarchyStaff,
   {
     id: 'user-super',
     name: 'Rajesh Verma',
@@ -29,6 +34,7 @@ export const staffUsers: StaffUser[] = [
     designation: 'IT Nodal Officer',
     role: 'super_admin',
     divisionIds: divisions.map((d) => d.id),
+    orgUnitId: 'org-state',
     password: 'admin123',
     active: true,
   },
@@ -40,6 +46,7 @@ export const staffUsers: StaffUser[] = [
     designation: 'HQ Officer',
     role: 'dept_admin',
     divisionIds: divisions.map((d) => d.id),
+    orgUnitId: 'org-state',
     password: 'dept123',
     active: true,
   },
@@ -51,6 +58,7 @@ export const staffUsers: StaffUser[] = [
     designation: 'Executive Engineer',
     role: 'division_officer',
     divisionIds: ['div-raipur'],
+    orgUnitId: 'org-div-raipur1',
     password: 'ee123',
     active: true,
   },
@@ -62,6 +70,7 @@ export const staffUsers: StaffUser[] = [
     designation: 'Sub-Division Officer',
     role: 'complaint_handler',
     divisionIds: ['div-raipur'],
+    orgUnitId: 'org-sub-raipur1',
     password: 'handler123',
     active: true,
   },
@@ -73,6 +82,7 @@ export const staffUsers: StaffUser[] = [
     designation: 'Monitoring Officer',
     role: 'viewer',
     divisionIds: divisions.map((d) => d.id),
+    orgUnitId: 'org-state',
     password: 'viewer123',
     active: true,
   },
@@ -84,6 +94,7 @@ const daysFromNow = (n: number) => new Date(now.getTime() + n * 86400000).toISOS
 
 export const seedState: AppState = {
   divisions,
+  orgUnits,
   categories,
   staff: staffUsers,
   projects: [
@@ -93,8 +104,11 @@ export const seedState: AppState = {
       nameHi: 'नवा रायपुर प्रशासनिक भवन',
       type: 'building',
       divisionId: 'div-raipur',
+      orgUnitId: 'org-sub-raipur2',
       location: 'Sector-19, Nava Raipur',
       locationHi: 'सेक्टर-19, नवा रायपुर',
+      lat: 21.169,
+      lng: 81.787,
       status: 'in_progress',
       completionPercent: 45,
       contractor: 'CG Infra Builders Pvt Ltd',
@@ -111,8 +125,11 @@ export const seedState: AppState = {
       nameHi: 'एनएच-30 रायपुर-बिलासपुर सड़क चौड़ीकरण',
       type: 'road',
       divisionId: 'div-raipur',
+      orgUnitId: 'org-sub-raipur1',
       location: 'NH-30, Km 45-78',
       locationHi: 'एनएच-30, किमी 45-78',
+      lat: 21.45,
+      lng: 81.85,
       status: 'in_progress',
       completionPercent: 62,
       contractor: 'Highway Solutions Ltd',
@@ -128,8 +145,11 @@ export const seedState: AppState = {
       nameHi: 'राजिम में महानदी पुल',
       type: 'bridge',
       divisionId: 'div-raipur',
+      orgUnitId: 'org-sub-arang',
       location: 'Rajim, Gariyaband',
       locationHi: 'राजिम, गरियाबंद',
+      lat: 21.1965,
+      lng: 81.969,
       status: 'in_progress',
       completionPercent: 28,
       contractor: 'Bridge Corp India',
@@ -145,8 +165,11 @@ export const seedState: AppState = {
       nameHi: 'बिलासपुर जिला अस्पताल विस्तार',
       type: 'building',
       divisionId: 'div-bilaspur',
+      orgUnitId: 'org-sub-bilaspur1',
       location: 'Bilaspur City',
       locationHi: 'बिलासपुर शहर',
+      lat: 22.0797,
+      lng: 82.1409,
       status: 'in_progress',
       completionPercent: 72,
       contractor: 'MedBuild Constructions',
@@ -162,8 +185,11 @@ export const seedState: AppState = {
       nameHi: 'दुर्ग रिंग रोड चरण II',
       type: 'road',
       divisionId: 'div-durg',
+      orgUnitId: 'org-sub-durg1',
       location: 'Durg-Bhilai Corridor',
       locationHi: 'दुर्ग-भिलाई कॉरिडोर',
+      lat: 21.19,
+      lng: 81.3,
       status: 'in_progress',
       completionPercent: 38,
       contractor: 'Roadways CG Ltd',
@@ -213,8 +239,11 @@ export const seedState: AppState = {
       nameHi: 'अंबिकापुर बस टर्मिनल',
       type: 'building',
       divisionId: 'div-ambikapur',
+      orgUnitId: 'org-sub-ambikapur1',
       location: 'Ambikapur Main Road',
       locationHi: 'अंबिकापुर मुख्य सड़क',
+      lat: 23.1186,
+      lng: 83.1956,
       status: 'in_progress',
       completionPercent: 20,
       contractor: 'Transit Infra Ltd',
@@ -230,8 +259,11 @@ export const seedState: AppState = {
       nameHi: 'जगदलपुर जल टैंक संरचना',
       type: 'other',
       divisionId: 'div-jagdalpur',
+      orgUnitId: 'org-sub-kanker',
       location: 'Jagdalpur Cantonment',
       locationHi: 'जगदलपुर छावनी',
+      lat: 19.076,
+      lng: 82.029,
       status: 'planned',
       completionPercent: 0,
       contractor: 'WaterWorks CG',

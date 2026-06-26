@@ -10,17 +10,27 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons/*.png'],
       manifest: {
-        name: 'PWD CMPTS - Chhattisgarh',
-        short_name: 'CMPTS',
-        description: 'Complaint Management & Project Tracking System',
-        theme_color: '#1e3a5f',
-        background_color: '#ffffff',
+        name: 'PWD Field — Chhattisgarh',
+        short_name: 'PWD Field',
+        description: 'PWD Chhattisgarh field app: hierarchy directory and on-site, geo-tagged work progress capture.',
+        theme_color: '#0a6b3d',
+        background_color: '#0a6b3d',
         display: 'standalone',
+        display_override: ['standalone', 'fullscreen', 'minimal-ui'],
         orientation: 'portrait',
-        start_url: './',
+        // Launch straight into the app experience when installed.
+        start_url: './#/app',
+        scope: './',
+        categories: ['government', 'productivity', 'utilities'],
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+          { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+        shortcuts: [
+          { name: 'Capture Progress', short_name: 'Capture', url: './#/app/capture' },
+          { name: 'Hierarchy', short_name: 'Hierarchy', url: './#/app/hierarchy' },
         ],
       },
       workbox: {

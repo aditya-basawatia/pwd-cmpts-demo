@@ -1,4 +1,4 @@
-import type { AppState, SessionUser } from '@/types';
+import type { AppState, SessionUser, StatusUpdate } from '@/types';
 import { seedState } from '@/data/seed';
 
 const STORAGE_KEY = 'cmpts-demo-state';
@@ -13,7 +13,12 @@ let state: AppState = loadState();
 function loadState(): AppState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw) as AppState;
+    if (raw) {
+      const parsed = JSON.parse(raw) as Partial<AppState>;
+      // Forward-compatible merge: older persisted state may predate the
+      // hierarchy (orgUnits) feature, so backfill any missing collections.
+      return { ...structuredClone(seedState), ...parsed } as AppState;
+    }
   } catch {
     /* ignore */
   }
@@ -125,6 +130,30 @@ export function addAuditLog(
       ...s.auditLogs,
     ],
   }));
+}
+
+export function addStatusUpdate(
+  update: Omit<StatusUpdate, 'id' | 'createdAt'> & { createdAt?: string },
+) {
+  const entry: StatusUpdate = {
+    ...update,
+    id: generateId('su'),
+    createdAt: update.createdAt ?? new Date().toISOString(),
+  };
+  updateState((s) => ({
+    ...s,
+    statusUpdates: [entry, ...s.statusUpdates],
+    projects: s.projects.map((p) =>
+      p.id === entry.projectId
+        ? {
+            ...p,
+            completionPercent: entry.completionPercent,
+            status: entry.completionPercent >= 100 ? 'completed' : p.status === 'planned' ? 'in_progress' : p.status,
+          }
+        : p,
+    ),
+  }));
+  return entry;
 }
 
 export function addNotification(channel: 'sms' | 'email' | 'push', recipient: string, message: string) {

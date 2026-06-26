@@ -85,6 +85,9 @@ export default function Layout() {
             <Link to="/internal/login" className="rounded-lg bg-white/15 px-3 py-1.5 text-sm font-medium hover:bg-white/25">
               {t('staffLogin')}
             </Link>
+            <Link to="/app" className="rounded-lg bg-pwd-gold px-3 py-1.5 text-sm font-semibold text-pwd-ink hover:bg-pwd-gold/90">
+              {t('openApp')}
+            </Link>
           </nav>
           <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
             {open ? <X /> : <Menu />}
@@ -99,6 +102,9 @@ export default function Layout() {
             ))}
             <Link to="/internal/login" className="block py-2" onClick={() => setOpen(false)}>
               {t('staffLogin')}
+            </Link>
+            <Link to="/app" className="block py-2 font-semibold text-pwd-gold" onClick={() => setOpen(false)}>
+              {t('openApp')}
             </Link>
           </div>
         )}

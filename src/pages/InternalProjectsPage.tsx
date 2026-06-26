@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from '@/hooks/useStore';
-import { getSession, updateState, generateId, addAuditLog } from '@/store/store';
-import { canEditProjects, hasDivisionAccess } from '@/lib/rbac';
+import { useInternalScope } from '@/hooks/useInternalScope';
+import { updateState, generateId, addAuditLog } from '@/store/store';
+import { canEditProjects } from '@/lib/rbac';
 import { ProgressBar, ProjectStatusBadge } from '@/components/Badges';
 
 export default function InternalProjectsPage() {
   const { t, i18n } = useTranslation();
-  const session = getSession()!;
-  const { projects, divisions, statusUpdates } = useStore();
+  const { session, scopedProjects } = useInternalScope();
+  const { divisions, statusUpdates } = useStore();
   const isHi = i18n.language === 'hi';
   const [selectedId, setSelectedId] = useState('');
   const [updateForm, setUpdateForm] = useState({ message: '', messageHi: '', percent: 0, milestone: '' });
 
-  const visible = projects.filter((p) => hasDivisionAccess(session.role, session.divisionIds, p.divisionId));
-  const selected = projects.find((p) => p.id === selectedId);
+  if (!session) return null;
+
+  const visible = scopedProjects;
+  const selected = visible.find((p) => p.id === selectedId);
   const updates = statusUpdates.filter((u) => u.projectId === selectedId).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   const postUpdate = () => {
