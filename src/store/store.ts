@@ -8,7 +8,7 @@ const VERSION_KEY = 'cmpts-seed-version';
 
 // Bump this whenever the seed shape/accounts change so existing browsers get a
 // clean reset (otherwise a stale persisted `staff` list hides new demo logins).
-const SEED_VERSION = '2026-06-26-hierarchy-3';
+const SEED_VERSION = '2026-06-26-hierarchy-4';
 
 type Listener = () => void;
 const listeners = new Set<Listener>();

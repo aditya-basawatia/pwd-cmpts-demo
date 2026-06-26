@@ -180,4 +180,6 @@ export default {
   resetDemoHint: 'Clears complaints & captures you added, restores sample data',
   resetConfirm: 'Reset the demo? This removes all manually created complaints and progress captures and restores the original sample data in every open tab.',
   resetDone: 'Demo data has been reset.',
+  selectAProject: 'Select a project',
+  noPhotoCaptured: 'No photo captured',
 };

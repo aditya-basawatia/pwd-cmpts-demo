@@ -42,6 +42,10 @@ export const orgUnits: OrgUnit[] = [
   { id: 'org-div-bilaspur1', name: 'Division No.1, Bilaspur', nameHi: 'मंडल क्र.1, बिलासपुर', level: 'division', parentId: 'org-circle-bilaspur', lat: 22.0797, lng: 82.1409 },
   { id: 'org-div-ambikapur', name: 'Ambikapur Division', nameHi: 'अंबिकापुर मंडल', level: 'division', parentId: 'org-circle-ambikapur', lat: 23.1186, lng: 83.1956 },
   { id: 'org-div-kanker', name: 'Kanker Division', nameHi: 'कांकेर मंडल', level: 'division', parentId: 'org-circle-bastar', lat: 20.271, lng: 81.492 },
+  { id: 'org-div-jagdalpur', name: 'Jagdalpur Division', nameHi: 'जगदलपुर मंडल', level: 'division', parentId: 'org-circle-bastar', lat: 19.076, lng: 82.029 },
+  { id: 'org-div-korba', name: 'Korba Division', nameHi: 'कोरबा मंडल', level: 'division', parentId: 'org-circle-bilaspur', lat: 22.3595, lng: 82.7501 },
+  { id: 'org-div-dhamtari', name: 'Dhamtari Division', nameHi: 'धमतरी मंडल', level: 'division', parentId: 'org-circle-raipur2', lat: 20.7073, lng: 81.5497 },
+  { id: 'org-div-rajnandgaon', name: 'Rajnandgaon Division', nameHi: 'राजनांदगांव मंडल', level: 'division', parentId: 'org-circle-durg', lat: 21.0972, lng: 81.0306 },
 
   // ---- Sub-Divisions (Sub-Divisional / Assistant Engineers) ----
   { id: 'org-sub-raipur1', name: 'Sub-Division No.1, Raipur', nameHi: 'उपमंडल क्र.1, रायपुर', level: 'subdivision', parentId: 'org-div-raipur1', lat: 21.2514, lng: 81.6296 },
@@ -56,6 +60,10 @@ export const orgUnits: OrgUnit[] = [
   { id: 'org-sub-bilaspur1', name: 'Sub-Division No.1, Bilaspur', nameHi: 'उपमंडल क्र.1, बिलासपुर', level: 'subdivision', parentId: 'org-div-bilaspur1', lat: 22.0797, lng: 82.1409 },
   { id: 'org-sub-ambikapur1', name: 'Sub-Division No.1, Ambikapur', nameHi: 'उपमंडल क्र.1, अंबिकापुर', level: 'subdivision', parentId: 'org-div-ambikapur', lat: 23.1186, lng: 83.1956 },
   { id: 'org-sub-kanker', name: 'Sub-Division Kanker', nameHi: 'उपमंडल कांकेर', level: 'subdivision', parentId: 'org-div-kanker', lat: 20.271, lng: 81.492 },
+  { id: 'org-sub-jagdalpur', name: 'Sub-Division Jagdalpur', nameHi: 'उपमंडल जगदलपुर', level: 'subdivision', parentId: 'org-div-jagdalpur', lat: 19.076, lng: 82.029 },
+  { id: 'org-sub-korba', name: 'Sub-Division Korba', nameHi: 'उपमंडल कोरबा', level: 'subdivision', parentId: 'org-div-korba', lat: 22.3595, lng: 82.7501 },
+  { id: 'org-sub-dhamtari', name: 'Sub-Division Dhamtari', nameHi: 'उपमंडल धमतरी', level: 'subdivision', parentId: 'org-div-dhamtari', lat: 20.7073, lng: 81.5497 },
+  { id: 'org-sub-rajnandgaon', name: 'Sub-Division Rajnandgaon', nameHi: 'उपमंडल राजनांदगांव', level: 'subdivision', parentId: 'org-div-rajnandgaon', lat: 21.0972, lng: 81.0306 },
 ];
 
 /**
@@ -110,6 +118,10 @@ export const hierarchyStaff: StaffUser[] = [
   { id: 'h-ee-bilaspur1', name: 'C. S. Vindhraj', email: 'ee.bilaspur1@pwd.cg.gov.in', mobile: '9977822669', designation: 'Executive Engineer (Division No.1, Bilaspur)', role: 'division_officer', divisionIds: ['div-bilaspur'], orgUnitId: 'org-div-bilaspur1', password: DIRECTORY_PWD, active: true },
   { id: 'h-ee-ambikapur', name: 'Virendra Choudhari', email: 'ee.ambikapur@pwd.cg.gov.in', mobile: '9407633009', designation: 'Executive Engineer (Ambikapur Division)', role: 'division_officer', divisionIds: ['div-ambikapur'], orgUnitId: 'org-div-ambikapur', password: DIRECTORY_PWD, active: true },
   { id: 'h-ee-kanker', name: 'K. K. Saral', email: 'ee.kanker@pwd.cg.gov.in', mobile: '8435380534', designation: 'Executive Engineer (Kanker Division)', role: 'division_officer', divisionIds: ['div-jagdalpur'], orgUnitId: 'org-div-kanker', password: DIRECTORY_PWD, active: true },
+  { id: 'h-ee-jagdalpur', name: 'S. R. Kashyap', email: 'ee.jagdalpur@pwd.cg.gov.in', mobile: '9425260781', designation: 'Executive Engineer (Jagdalpur Division)', role: 'division_officer', divisionIds: ['div-jagdalpur'], orgUnitId: 'org-div-jagdalpur', password: DIRECTORY_PWD, active: true },
+  { id: 'h-ee-korba', name: 'P. R. Yadav', email: 'ee.korba@pwd.cg.gov.in', mobile: '9425221456', designation: 'Executive Engineer (Korba Division)', role: 'division_officer', divisionIds: ['div-korba'], orgUnitId: 'org-div-korba', password: DIRECTORY_PWD, active: true },
+  { id: 'h-ee-dhamtari', name: 'A. K. Dewangan', email: 'ee.dhamtari@pwd.cg.gov.in', mobile: '9425209873', designation: 'Executive Engineer (Dhamtari Division)', role: 'division_officer', divisionIds: ['div-dhamtari'], orgUnitId: 'org-div-dhamtari', password: DIRECTORY_PWD, active: true },
+  { id: 'h-ee-rajnandgaon', name: 'T. K. Sinha', email: 'ee.rajnandgaon@pwd.cg.gov.in', mobile: '9425231654', designation: 'Executive Engineer (Rajnandgaon Division)', role: 'division_officer', divisionIds: ['div-rajnandgaon'], orgUnitId: 'org-div-rajnandgaon', password: DIRECTORY_PWD, active: true },
 
   // Sub-Divisions — Sub-Divisional / Assistant Engineers (field officers)
   {
@@ -128,6 +140,10 @@ export const hierarchyStaff: StaffUser[] = [
   { id: 'h-sdo-bilaspur1', name: 'Aditya Grover', email: 'sdo.bilaspur1@pwd.cg.gov.in', mobile: '9691431999', designation: 'Sub-Divisional Officer (Sub-Div No.1, Bilaspur)', role: 'complaint_handler', divisionIds: ['div-bilaspur'], orgUnitId: 'org-sub-bilaspur1', password: DIRECTORY_PWD, active: true },
   { id: 'h-sdo-ambikapur1', name: 'Amarchand Bara', email: 'sdo.ambikapur1@pwd.cg.gov.in', mobile: '7974812931', designation: 'Sub-Divisional Officer (Sub-Div No.1, Ambikapur)', role: 'complaint_handler', divisionIds: ['div-ambikapur'], orgUnitId: 'org-sub-ambikapur1', password: DIRECTORY_PWD, active: true },
   { id: 'h-sdo-kanker', name: 'Maniram Markam', email: 'sdo.kanker@pwd.cg.gov.in', mobile: '7694008050', designation: 'Sub-Divisional Officer (Kanker)', role: 'complaint_handler', divisionIds: ['div-jagdalpur'], orgUnitId: 'org-sub-kanker', password: DIRECTORY_PWD, active: true },
+  { id: 'h-sdo-jagdalpur', name: 'Dinesh Baghel', email: 'sdo.jagdalpur@pwd.cg.gov.in', mobile: '9685412300', designation: 'Sub-Divisional Officer (Jagdalpur)', role: 'complaint_handler', divisionIds: ['div-jagdalpur'], orgUnitId: 'org-sub-jagdalpur', password: DIRECTORY_PWD, active: true },
+  { id: 'h-sdo-korba', name: 'Rohit Kumar Dewangan', email: 'sdo.korba@pwd.cg.gov.in', mobile: '9826145872', designation: 'Sub-Divisional Officer (Korba)', role: 'complaint_handler', divisionIds: ['div-korba'], orgUnitId: 'org-sub-korba', password: DIRECTORY_PWD, active: true },
+  { id: 'h-sdo-dhamtari', name: 'Sourabh Verma', email: 'sdo.dhamtari@pwd.cg.gov.in', mobile: '9907654120', designation: 'Sub-Divisional Officer (Dhamtari)', role: 'complaint_handler', divisionIds: ['div-dhamtari'], orgUnitId: 'org-sub-dhamtari', password: DIRECTORY_PWD, active: true },
+  { id: 'h-sdo-rajnandgaon', name: 'Naresh Sahu', email: 'sdo.rajnandgaon@pwd.cg.gov.in', mobile: '9425369852', designation: 'Sub-Divisional Officer (Rajnandgaon)', role: 'complaint_handler', divisionIds: ['div-rajnandgaon'], orgUnitId: 'org-sub-rajnandgaon', password: DIRECTORY_PWD, active: true },
 
   // Demo showcase account (listed last so it is not shown as a unit head):
   // full state visibility AND bypasses the on-site GPS lock so progress can be

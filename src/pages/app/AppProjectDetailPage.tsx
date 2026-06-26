@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Camera, MapPin } from 'lucide-react';
 import { useStore } from '@/hooks/useStore';
 import { ProgressBar, ProjectStatusBadge } from '@/components/Badges';
+import ProgressPhoto from '@/components/ProgressPhoto';
 import { formatDate } from '@/lib/utils';
 
 export default function AppProjectDetailPage() {
@@ -52,9 +53,7 @@ export default function AppProjectDetailPage() {
           <div className="space-y-3">
             {updates.map((u) => (
               <div key={u.id} className="card p-3">
-                {u.photoDataUrl && (
-                  <img src={u.photoDataUrl} alt="" className="mb-2 w-full rounded-lg object-cover" />
-                )}
+                <ProgressPhoto src={u.photoDataUrl} className="mb-2 h-44 w-full rounded-lg" />
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-medium text-pwd-ink">{isHi ? u.messageHi : u.message}</p>
                   <span className="flex-shrink-0 text-sm font-bold text-pwd-green">{u.completionPercent}%</span>

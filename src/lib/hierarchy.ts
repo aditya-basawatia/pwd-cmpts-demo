@@ -68,6 +68,11 @@ export function projectsInUnits(projects: Project[], unitIds: Set<string>): Proj
   return projects.filter((p) => p.orgUnitId && unitIds.has(p.orgUnitId));
 }
 
+/** Projects mapped to this exact org unit (not descendants). */
+export function projectsForUnit(projects: Project[], unitId: string): Project[] {
+  return projects.filter((p) => p.orgUnitId === unitId);
+}
+
 export function complaintsInUnits(
   complaints: Complaint[],
   projects: Project[],

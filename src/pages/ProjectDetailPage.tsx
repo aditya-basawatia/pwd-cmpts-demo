@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, MessageSquarePlus } from 'lucide-react';
 import { useStore } from '@/hooks/useStore';
 import { ProgressBar, ProjectStatusBadge } from '@/components/Badges';
+import ProgressPhoto from '@/components/ProgressPhoto';
 import { formatCurrency, formatDate } from '@/lib/utils';
 
 export default function ProjectDetailPage() {
@@ -64,6 +65,7 @@ export default function ProjectDetailPage() {
           <div className="space-y-4">
             {updates.map((u) => (
               <div key={u.id} className="flex gap-4 border-l-4 border-pwd-gold pl-4">
+                <ProgressPhoto src={u.photoDataUrl} className="h-24 w-24 flex-shrink-0 rounded-lg" />
                 <div className="flex-1">
                   <p className="font-medium">{isHi ? u.messageHi : u.message}</p>
                   {u.milestoneLabel && <span className="text-xs bg-slate-100 rounded px-2 py-0.5 mt-1 inline-block">{u.milestoneLabel}</span>}
